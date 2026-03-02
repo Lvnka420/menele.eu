@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rejestracja - menele.eu</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .register-container {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+
+        .register-box {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .register-box h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .register-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .register-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .error-message {
+            color: #d32f2f;
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+        }
+
+        .login-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .back-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .password-strength {
+            font-size: 12px;
+            margin-top: 5px;
+            padding: 8px;
+            border-radius: 3px;
+            background-color: #f5f5f5;
+        }
+
+        .strength-weak {
+            color: #d32f2f;
+        }
+
+        .strength-medium {
+            color: #f57f17;
+        }
+
+        .strength-strong {
+            color: #388e3c;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            color: #667eea;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <div class="register-box">
+            <div class="back-link">
+                <a href="index.html">← Powrót do strony głównej</a>
+            </div>
+            
+            <h1>Rejestracja</h1>
+
+            <div id="errorMessage" class="error-message"></div>
+
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="name">Imię i nazwisko:</label>
+                    <input 
+                        type="text" 
+                        id="name" 
+                        name="name" 
+                        required 
+                        placeholder="Jan Kowalski"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        required 
+                        placeholder="twoj@email.com"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Hasło:</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        required 
+                        placeholder="Min. 8 znaków"
+                    >
+                    <div id="passwordStrength" class="password-strength"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword">Potwierdź hasło:</label>
+                    <input 
+                        type="password" 
+                        id="confirmPassword" 
+                        name="confirmPassword" 
+                        required 
+                        placeholder="Wpisz hasło ponownie"
+                    >
+                </div>
+
+                <div class="loading" id="loading">
+                    <div class="spinner"></div>
+                    <p>Rejestracja...</p>
+                </div>
+
+                <button type="submit" class="register-btn" id="submitBtn">Zarejestruj Się</button>
+            </form>
+
+            <div class="login-link">
+                Masz już konto? <a href="logowanie.html">Zaloguj się</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const registerForm = document.getElementById('registerForm');
+        const errorMessage = document.getElementById('errorMessage');
+        const loading = document.getElementById('loading');
+        const submitBtn = document.getElementById('submitBtn');
+        const passwordInput = document.getElementById('password');
+        const passwordStrength = document.getElementById('passwordStrength');
+
+        // Sprawdzanie siły hasła
+        passwordInput.addEventListener('input', (e) => {
+            const password = e.target.value;
+            let strength = 0;
+            let text = '';
+            let className = '';
+
+            if (password.length >= 8) strength++;
+            if (/[a-z]/.test(password) && /[A-Z]/.test(password)) strength++;
+            if (/[0-9]/.test(password)) strength++;
+            if (/[^a-zA-Z0-9]/.test(password)) strength++;
+
+            if (strength < 2) {
+                text = '❌ Słabe hasło';
+                className = 'strength-weak';
+            } else if (strength < 3) {
+                text = '⚠️ Średnie hasło';
+                className = 'strength-medium';
+            } else {
+                text = '✅ Silne hasło';
+                className = 'strength-strong';
+            }
+
+            passwordStrength.textContent = text;
+            passwordStrength.className = 'password-strength ' + className;
+        });
+
+        registerForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            // Walidacja
+            if (!name || !email || !password || !confirmPassword) {
+                errorMessage.textContent = 'Wszystkie pola są wymagane!';
+                return;
+            }
+
+            if (name.length < 3) {
+                errorMessage.textContent = 'Imię musi mieć co najmniej 3 znaki!';
+                return;
+            }
+
+            if (!email.includes('@')) {
+                errorMessage.textContent = 'Wprowadź prawidłowy email!';
+                return;
+            }
+
+            if (password.length < 8) {
+                errorMessage.textContent = 'Hasło musi mieć co najmniej 8 znaków!';
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                errorMessage.textContent = 'Hasła się nie zgadzają!';
+                return;
+            }
+
+            // Wyślij do API
+            loading.style.display = 'block';
+            submitBtn.disabled = true;
+            errorMessage.textContent = '';
+
+            try {
+                const response = await fetch('/api/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ name, email, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    localStorage.setItem('authToken', data.token);
+                    localStorage.setItem('userName', data.user.name);
+                    
+                    errorMessage.style.color = '#388e3c';
+                    errorMessage.textContent = 'Rejestracja udana! Przekierowywanie...';
+                    setTimeout(() => {
+                        window.location.href = 'dashboard.html';
+                    }, 1500);
+                } else {
+                    errorMessage.textContent = data.message || 'Błąd rejestracji!';
+                }
+            } catch (error) {
+                errorMessage.textContent = 'Błąd połączenia z serwerem!';
+                console.error('Error:', error);
+            } finally {
+                loading.style.display = 'none';
+                submitBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>

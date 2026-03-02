@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<title>O nas</title>
+<link rel="apple-touch-icon" sizes="180x180" href="ikona/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="ikona/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="ikona/favicon-16x16.png">
+<link rel="manifest" href="ikona/site.webmanifest">
+<link rel="stylesheet" href="style.css">
+
+
+</head>
+<body>
+<section class="section">
+  <div class="section-title reveal">
+    <h2>Kim my w ogóle jesteśmy:</h2>
+    <p>Kim my kurwa jesteśmy?</p>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card reveal">
+      <center><div class="feature-icon fi-blue">💧</div></center>
+      <h3><center>O nas</center></h3>
+      <p><center>Grupa meneli (czt. Przyjaciół) streamujących na platformie Twitch oraz Kick na naszych streamach znajdziesz content pokroju ekipowe granie w gierki, gotowanie, IRL czy przeglądanie internetu.<br> Wszystko co robimy jest w celach humorystycznych oraz wykonywane przez profesjonalistów więc nie zalecamy powtarzać czynności jakie wykonujemy na transmisjach na żywo.<br> Wszelkie propozycje co możemy zmienić/dodać prosimy pisać w wiadomości prywatnej na instagramie lub discordzie na odpowiednim kanale do tego przeznaczonym.<br> Poniżej znajdziecie linki do naszych sociali TVP Meneli:<br>
+<br>Discord: <a href="https://discord.gg/V4xv2BThtY">Discord</a>
+<br>Instagram: <a href="https://www.instagram.com/tvp.menele">Instagram</a>
+<br>Twitch: <a href="https://twitch.tv/">Twitch</a>
+<br>Kick: <a href="https://kick.com/">Kick</a></center></p>
+    </div>
+</section>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+
+  // Parallax clouds on mouse move
+  document.addEventListener('mousemove', e => {
+    const x = (e.clientX / window.innerWidth - 0.5) * 20;
+    const y = (e.clientY / window.innerHeight - 0.5) * 10;
+    document.querySelectorAll('.orb').forEach((orb, i) => {
+      const factor = (i + 1) * 0.4;
+      orb.style.transform = `translate(${x * factor}px, ${y * factor}px)`;
+    });
+  });
+</script>
+</body>
+</html>
