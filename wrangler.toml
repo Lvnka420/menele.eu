@@ -1,0 +1,8 @@
+name = "menele-api"
+type = "javascript"
+compatibility_date = "2024-01-01"
+
+
+[[routes]]
+pattern = "*/api/*"
+zone_id = ""
