@@ -1,169 +1,79 @@
-<!-- filepath: /workspaces/menele.eu/stream.html -->
 <!DOCTYPE html>
 <html lang="pl">
 <head>
 <meta charset="UTF-8">
-<title>Stream - menele.eu</title>
-    <!-- responsive viewport -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stream — menele.eu</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="apple-touch-icon" sizes="180x180" href="ikona/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="ikona/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="ikona/favicon-16x16.png">
 <link rel="manifest" href="ikona/site.webmanifest">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
-<style>
-    .stream-container {
-        max-width: 1200px;
-        margin: 80px auto 40px;
-        padding: 20px;
-    }
-
-    .stream-wrapper {
-        position: relative;
-        width: 100%;
-        padding-bottom: 56.25%;
-        height: 0;
-        overflow: hidden;
-        border-radius: 12px;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    }
-
-    .stream-wrapper iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border: none;
-    }
-
-    .stream-info {
-        margin-top: 40px;
-        padding: 20px;
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 12px;
-        backdrop-filter: blur(10px);
-    }
-
-    .stream-selector {
-        display: flex;
-        gap: 10px;
-        margin-bottom: 20px;
-        flex-wrap: wrap;
-    }
-
-    .stream-button {
-        padding: 10px 20px;
-        border: 2px solid #fff;
-        background: transparent;
-        color: #fff;
-        border-radius: 8px;
-        cursor: pointer;
-        font-weight: 600;
-        transition: all 0.3s ease;
-    }
-
-    .stream-button:hover {
-        background: #fff;
-        color: #000;
-    }
-
-    .stream-button.active {
-        background: #fff;
-        color: #000;
-    }
-
-    @media (max-width: 768px) {
-        .stream-container {
-            margin-top: 60px;
-        }
-
-        .stream-selector {
-            flex-direction: column;
-        }
-
-        .stream-button {
-            width: 100%;
-        }
-    }
-</style>
 </head>
 <body>
 
-<!-- Background elements -->
-<div class="cloud cloud-1"></div>
-<div class="cloud cloud-2"></div>
-<div class="cloud cloud-3"></div>
 <div class="orb orb-1"></div>
 <div class="orb orb-2"></div>
 <div class="orb orb-3"></div>
 
-<!-- NAV -->
 <nav>
-    <span class="nav-logo"> <img src="ikona/favicon-32x32.png" alt="Menele" class="nav-logo-icon"></span>
-    <a href="index.html">Strona główna</a>
-    <a href="onas.html">O nas</a>
-    <a href="logowanie.php" class="nav-cta">Logowanie</a>
+  <span class="nav-logo">
+    <img src="ikona/favicon-32x32.png" alt="" class="nav-logo-icon">
+    menele.eu
+  </span>
+  <a href="index.html">Strona główna</a>
+  <a href="onas.html">O nas</a>
+  <a href="logowanie.html" class="nav-cta">Logowanie</a>
 </nav>
 
-<!-- STREAM SECTION -->
 <section class="stream-container">
-    <div class="section-title reveal">
-        <h2>Stream TVP-MENELE</h2>
-        <p>Śledź naszą transmisję na żywo</p>
-    </div>
+  <div class="section-title reveal">
+    <h2>Stream TVP-MENELE</h2>
+    <p>Śledź naszą transmisję na żywo</p>
+  </div>
 
-    <div class="stream-selector">
-        <button class="stream-button active" data-platform="twitch">Twitch</button>
-        <button class="stream-button" data-platform="kick">Kick</button>
-    </div>
+  <div class="stream-selector reveal">
+    <button class="stream-button active" data-platform="twitch">Twitch</button>
+    <button class="stream-button" data-platform="kick">Kick</button>
+  </div>
 
-    <div class="stream-wrapper" id="streamWrapper">
-        <iframe 
-            src="https://player.twitch.tv/?channel=Lodzikk_&parent=menele.eu" 
-            height="720" 
-            width="1280"
-            allowfullscreen>
-        </iframe>
-    </div>
+  <div class="stream-wrapper reveal" id="streamWrapper">
+    <iframe
+      src="https://player.twitch.tv/?channel=lodzikk_&parent=menele.eu"
+      allowfullscreen>
+    </iframe>
+  </div>
 
-    <div class="stream-info">
-        <h3>O naszym streamie</h3>
-        <p>Dołącz do nas na żywo! Transmitujemy codziennie o godzinie 20:00. Baw się dobrze wraz z TVP-MENELE!</p>
-    </div>
+  <div class="stream-info reveal">
+    <h3>O naszym streamie</h3>
+    <p>Dołącz do nas na żywo! Transmitujemy codziennie o godzinie 20:00. Baw się dobrze wraz z TVP-MENELE!</p>
+  </div>
 </section>
 
-<footer>
-    Made by Lvnka
-</footer>
+<footer>Made by Lvnka</footer>
 
 <script>
-    // Stream platform switcher
-    document.querySelectorAll('.stream-button').forEach(btn => {
-        btn.addEventListener('click', function() {
-            const platform = this.dataset.platform;
-            const wrapper = document.getElementById('streamWrapper');
-            
-            document.querySelectorAll('.stream-button').forEach(b => b.classList.remove('active'));
-            this.classList.add('active');
-
-            if (platform === 'twitch') {
-                wrapper.innerHTML = '<iframe src="https://player.twitch.tv/?channel=lodzikk_&parent=menele.eu" height="720" width="1280" allowfullscreen></iframe>';
-            } else if (platform === 'kick') {
-                wrapper.innerHTML = '<iframe src="https://player.kick.com/CHANNEL_NAME" height="720" width="1280" allowfullscreen></iframe>';
-            }
-        });
+  document.querySelectorAll('.stream-button').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const platform = this.dataset.platform;
+      const wrapper = document.getElementById('streamWrapper');
+      document.querySelectorAll('.stream-button').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      if (platform === 'twitch') {
+        wrapper.innerHTML = '<iframe src="https://player.twitch.tv/?channel=lodzikk_&parent=menele.eu" allowfullscreen></iframe>';
+      } else {
+        wrapper.innerHTML = '<iframe src="https://player.kick.com/lodzikk_" allowfullscreen></iframe>';
+      }
     });
+  });
 
-    // Parallax orbs
-    document.addEventListener('mousemove', e => {
-        const x = (e.clientX / window.innerWidth - 0.5) * 20;
-        const y = (e.clientY / window.innerHeight - 0.5) * 10;
-        document.querySelectorAll('.orb').forEach((orb, i) => {
-            const factor = (i + 1) * 0.4;
-            orb.style.transform = `translate(${x * factor}px, ${y * factor}px)`;
-        });
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 100);
     });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
 </script>
 </body>
 </html>

@@ -2,63 +2,83 @@
 <html lang="pl">
 <head>
 <meta charset="UTF-8">
-<title>O nas</title>
+<title>O nas — menele.eu</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="apple-touch-icon" sizes="180x180" href="ikona/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="ikona/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="ikona/favicon-16x16.png">
 <link rel="manifest" href="ikona/site.webmanifest">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
-
-
 </head>
 <body>
-<section class="section">
+
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+
+<nav>
+  <span class="nav-logo">
+    <img src="ikona/favicon-32x32.png" alt="" class="nav-logo-icon">
+    menele.eu
+  </span>
+  <a href="index.html">Strona główna</a>
+  <a href="stream.html">Stream</a>
+  <a href="logowanie.html" class="nav-cta">Logowanie</a>
+</nav>
+
+<section class="section" style="padding-top: 120px;">
   <div class="section-title reveal">
-    <h2>Kim my w ogóle jesteśmy:</h2>
+    <h2>Kim my w ogóle jesteśmy</h2>
     <p>Kim my kurwa jesteśmy?</p>
   </div>
-  <div class="features-grid">
-    <div class="feature-card reveal">
-      <center><div class="feature-icon fi-blue">💧</div></center>
-      <h3><center>O nas</center></h3>
-      <p><center>Grupa meneli (czt. Przyjaciół) streamujących na platformie Twitch oraz Kick na naszych streamach znajdziesz content pokroju ekipowe granie w gierki, gotowanie, IRL czy przeglądanie internetu.<br> Wszystko co robimy jest w celach humorystycznych oraz wykonywane przez profesjonalistów więc nie zalecamy powtarzać czynności jakie wykonujemy na transmisjach na żywo.<br> Wszelkie propozycje co możemy zmienić/dodać prosimy pisać w wiadomości prywatnej na instagramie lub discordzie na odpowiednim kanale do tego przeznaczonym.<br> Poniżej znajdziecie linki do naszych sociali TVP Meneli:<br>
-<br>Discord: <a href="https://discord.gg/V4xv2BThtY">Discord</a>
-<br>Instagram: <a href="https://www.instagram.com/tvp.menele">Instagram</a>
-<br>Twitch: <a href="https://twitch.tv/">Twitch</a>
-<br>Kick: <a href="https://kick.com/">Kick</a></center></p>
+
+  <div class="onas-card reveal">
+    <p>
+      Grupa meneli (czyt. Przyjaciół) streamujących na platformach <strong style="color: var(--text)">Twitch</strong> oraz <strong style="color: var(--text)">Kick</strong>.
+      Na naszych streamach znajdziesz content pokroju ekipowe granie w gierki, gotowanie, IRL czy przeglądanie internetu.
+      <br><br>
+      Wszystko co robimy jest w celach humorystycznych oraz wykonywane przez profesjonalistów —
+      nie zalecamy powtarzać czynności jakie wykonujemy na transmisjach na żywo.
+      <br><br>
+      Wszelkie propozycje co możemy zmienić lub dodać prosimy pisać w wiadomości prywatnej na Instagramie
+      lub Discordzie na odpowiednim kanale do tego przeznaczonym.
+    </p>
+
+    <div class="social-grid">
+      <a href="https://discord.gg/V4xv2BThtY" class="social-item" target="_blank">
+        <span class="social-item-label">Serwer</span>
+        <span class="social-item-name">Discord</span>
+        <span class="social-item-arrow">→ discord.gg</span>
+      </a>
+      <a href="https://www.instagram.com/tvp.menele" class="social-item" target="_blank">
+        <span class="social-item-label">Profil</span>
+        <span class="social-item-name">Instagram</span>
+        <span class="social-item-arrow">→ @tvp.menele</span>
+      </a>
+      <a href="https://twitch.tv/lodzikk_" class="social-item" target="_blank">
+        <span class="social-item-label">Live</span>
+        <span class="social-item-name">Twitch</span>
+        <span class="social-item-arrow">→ twitch.tv</span>
+      </a>
+      <a href="https://kick.com/" class="social-item" target="_blank">
+        <span class="social-item-label">Live</span>
+        <span class="social-item-name">Kick</span>
+        <span class="social-item-arrow">→ kick.com</span>
+      </a>
     </div>
-</section>
-<section class="section">
-  <div class="section-title reveal">
-    <h2>Last.FM:</h2>
-    <p>Last.FM</p>
   </div>
-  <div class="features-grid">
-    <div class="feature-card reveal">
-      <iframe allowfullscreen="" src="https://descent.live/LvNa47" frameborder="0" width="1000" height="720"></iframe>
-    </div>
 </section>
+
+<footer>Made by Lvnka</footer>
+
 <script>
-  // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 80);
-      }
+      if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 100);
     });
   }, { threshold: 0.1 });
   reveals.forEach(r => observer.observe(r));
-
-  // Parallax clouds on mouse move
-  document.addEventListener('mousemove', e => {
-    const x = (e.clientX / window.innerWidth - 0.5) * 20;
-    const y = (e.clientY / window.innerHeight - 0.5) * 10;
-    document.querySelectorAll('.orb').forEach((orb, i) => {
-      const factor = (i + 1) * 0.4;
-      orb.style.transform = `translate(${x * factor}px, ${y * factor}px)`;
-    });
-  });
 </script>
 </body>
 </html>

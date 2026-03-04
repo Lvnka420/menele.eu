@@ -3,47 +3,42 @@
 <head>
 <meta charset="UTF-8">
 <title>menele.eu</title>
-  <!-- responsive viewport -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="apple-touch-icon" sizes="180x180" href="ikona/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="ikona/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="ikona/favicon-16x16.png">
 <link rel="manifest" href="ikona/site.webmanifest">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
-
-
 </head>
 <body>
 
-<!-- Background elements -->
-<div class="cloud cloud-1"></div>
-<div class="cloud cloud-2"></div>
-<div class="cloud cloud-3"></div>
+<embed src="Rajka-Portorykańska_Bomba.wav" width="0" height="0" autostart=true loop=true controller=false hidden>
 <div class="orb orb-1"></div>
 <div class="orb orb-2"></div>
 <div class="orb orb-3"></div>
 
-<!-- NAV -->
 <nav>
-  <span class="nav-logo"> <img src="ikona/favicon-32x32.png" alt="Menele" class="nav-logo-icon"></span>
+  <span class="nav-logo">
+    <img src="ikona/favicon-32x32.png" alt="" class="nav-logo-icon">
+    menele.eu
+  </span>
   <a href="onas.html">O nas</a>
   <a href="stream.html">Stream</a>
   <a href="logowanie.html" class="nav-cta">Logowanie</a>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
+  <div class="hero-tag">TVP-MENELE</div>
   <h1>
     <span class="h1-line1">Witaj na</span>
     <span class="h1-line2">MENELE.EU</span>
   </h1>
-  <p>Witaj na platformie menele.eu <br>Stronie internetowej <b>TVP-MENELE</b></p>
+  <p>Witaj na platformie menele.eu —<br>stronie internetowej <b>TVP-MENELE</b></p>
   <div class="hero-buttons">
     <a href="logowanie.html" class="btn-primary">Zaloguj Się</a>
-    <a href="https://www.youtube.com/watch?v=B8KQMbNqApc" class="btn-secondary">🎵 Posłuchaj kojącej muzyki 2T4</a>
+    <a href="https://www.youtube.com/watch?v=B8KQMbNqApc" class="btn-secondary" target="_blank">▶ Kojąca Muzyka 2T4</a>
   </div>
-
-  <!-- Device mockup -->
   <div class="hero-device">
     <div class="device-frame">
       <div class="device-inner">
@@ -61,15 +56,14 @@
             <span class="stat-label">Możliwości</span>
           </div>
         </div>
+        <div class="terminal-footer-line">
+          <span>~/menele $</span> status: <span>ONLINE</span> <span class="t-cursor"></span>
+        </div>
       </div>
     </div>
-    <div class="leaf leaf-1">🍃</div>
-    <div class="leaf leaf-2">🌿</div>
-    <div class="leaf leaf-3">🍀</div>
   </div>
 </section>
 
-<!-- FEATURES -->
 <section class="section">
   <div class="section-title reveal">
     <h2>Menele.eu to:</h2>
@@ -77,36 +71,33 @@
   </div>
   <div class="features-grid">
     <div class="feature-card reveal">
-      <center><div class="feature-icon fi-blue">💧</div></center>
-      <h3><center>Projekt</center></h3>
-      <p><center>Projekt TVP-MENELE</center></p>
+      <div class="feature-icon">◈</div>
+      <h3>Projekt TVP-MENELE</h3>
+      <p>Grupa meneli streamujących na Twitchu i Kicku. Gierki, gotowanie, IRL i inne cuda — wszystko na żywo.</p>
     </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon">⬡</div>
+      <h3>Live Stream</h3>
+      <p>Transmisje na żywo codziennie o 20:00. Dołącz do chaosu i baw się razem z nami.</p>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon">◎</div>
+      <h3>Społeczność</h3>
+      <p>Discord, Instagram, Twitch, Kick — znajdź nas wszędzie i dołącz do naszej ekipy meneli.</p>
+    </div>
+  </div>
 </section>
-<footer>
-  Made by Lvnka
-</footer>
+
+<footer>Made by Lvnka</footer>
 
 <script>
-  // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 80);
-      }
+      if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 100);
     });
   }, { threshold: 0.1 });
   reveals.forEach(r => observer.observe(r));
-
-  // Parallax clouds on mouse move
-  document.addEventListener('mousemove', e => {
-    const x = (e.clientX / window.innerWidth - 0.5) * 20;
-    const y = (e.clientY / window.innerHeight - 0.5) * 10;
-    document.querySelectorAll('.orb').forEach((orb, i) => {
-      const factor = (i + 1) * 0.4;
-      orb.style.transform = `translate(${x * factor}px, ${y * factor}px)`;
-    });
-  });
 </script>
 </body>
 </html>
