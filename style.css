@@ -981,3 +981,25 @@ footer {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+.header {
+  height: 500px;
+  position: relative;
+  z-index: 100;
+}
+.header .video-wrapper {
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+  z-index: -1;
+}
+.header video {
+  position: absolute;
+  height: auto;
+  width: 100%;
+  min-height: 100%;
+}
+audio, canvas, video {
+  display: inline-block;
+}
